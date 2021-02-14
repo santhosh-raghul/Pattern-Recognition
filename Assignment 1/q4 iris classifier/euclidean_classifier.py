@@ -1,9 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from numpy.testing._private.utils import tempdir
 import pandas as pd
 import seaborn as sns
-import math
+import math,copy
 
 def create_mean_dataset(dataset):
 	variety_list=np.unique(dataset['variety'].tolist())
@@ -35,8 +34,12 @@ test_case_2=dataset.iloc[50]
 test_case_3=dataset.iloc[100]
 
 dataset=dataset.drop(dataset.index[0])
-dataset=dataset.drop(dataset.index[50])
-dataset=dataset.drop(dataset.index[100])
+dataset=dataset.drop(dataset.index[49])
+dataset=dataset.drop(dataset.index[98])
+
+plot1=plt.figure('Dataset without test cases')
+sns.scatterplot(data=dataset,x='petal.length',y='petal.width',hue='variety')
+plt.title('dataset without test cases')
 
 mean_dataset=create_mean_dataset(dataset)
 
@@ -52,5 +55,8 @@ print(test_case_3['variety'])
 
 dataset=dataset.append([test_case_1,test_case_2,test_case_3])
 
+plot2=plt.figure('Dataset with classified test cases')
 sns.scatterplot(data=dataset,x='petal.length',y='petal.width',hue='variety')
+plt.title('dataset with classified test cases')
+
 plt.show()
