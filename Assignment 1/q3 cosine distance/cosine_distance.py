@@ -33,7 +33,7 @@ def dot_product(A,B):
 
 def cosine_distance(A,B):
 	cos_theta=dot_product(A,B)/math.sqrt(dot_product(A,A)*dot_product(B,B))
-	return math.acos(cos_theta)
+	return 1-cos_theta,math.acos(cos_theta)
 
 if __name__ == "__main__":
 
@@ -43,5 +43,6 @@ if __name__ == "__main__":
 		sys.exit()
 	text1,text2=read_files(sys.argv[1],sys.argv[2])
 	freq1,freq2=get_word_frequency(text1,text2)
-	distance=cosine_distance(freq1,freq2)
-	print(f"cosine distance between {sys.argv[1]} and {sys.argv[2]} = {distance} radians or {math.degrees(distance)} degrees")
+	cosine_dist,angular_dist=cosine_distance(freq1,freq2)
+	print(f"cosine distance between {sys.argv[1]} and {sys.argv[2]} = {cosine_dist}")
+	print(f"angular distance between {sys.argv[1]} and {sys.argv[2]} = {angular_dist} radians or {math.degrees(angular_dist)} degrees")
