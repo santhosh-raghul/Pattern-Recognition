@@ -1,4 +1,3 @@
-from io import StringIO
 import numpy as np, multi_class_perceptron,multi_class_svm
 
 # extract required data from file
@@ -17,7 +16,5 @@ for i,label in enumerate(unique_labels):
 	d[label]=i
 train_label_encoded=np.array([d[label[0]] for label in train_label])
 
-# call perceptron code
-
-# multi_class_perceptron.demo(train_data,train_label_encoded,plot_title='q4')
+multi_class_perceptron.demo(train_data,train_label_encoded,plot_title='q4')
 multi_class_svm.demo(train_data,train_label_encoded,plot_title='q4')
